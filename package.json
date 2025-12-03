@@ -1,0 +1,39 @@
+{
+  "name": "cis4930assn11",
+  "version": "1.0.0",
+  "description": "OpenTelemetry Observability Assignment - Todo Service with tracing",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --require tracing.js index.js",
+    "start:jaeger": "USE_JAEGER=true node --require tracing.js index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AaryanAn/cis4930assn11.git"
+  },
+  "keywords": ["opentelemetry", "observability", "tracing", "jaeger"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AaryanAn/cis4930assn11/issues"
+  },
+  "homepage": "https://github.com/AaryanAn/cis4930assn11#readme",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.58.0",
+    "@opentelemetry/exporter-jaeger": "^2.0.0",
+    "@opentelemetry/exporter-otlp-http": "^0.26.0",
+    "@opentelemetry/instrumentation-http": "^0.200.0",
+    "@opentelemetry/instrumentation-mongodb": "^0.53.0",
+    "@opentelemetry/resources": "^1.25.0",
+    "@opentelemetry/sdk-metrics": "^1.25.0",
+    "@opentelemetry/sdk-node": "^0.200.0",
+    "@opentelemetry/sdk-trace-node": "^2.0.0",
+    "@opentelemetry/semantic-conventions": "^1.25.0",
+    "express": "^5.1.0",
+    "mongodb": "^4.3.1",
+    "opentelemetry-instrumentation-express": "^0.41.0"
+  }
+}
