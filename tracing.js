@@ -1,9 +1,8 @@
-const { resourceFromAttributes } = require('@opentelemetry/resources');
+const { Resource } = require('@opentelemetry/resources');
 const { ATTR_SERVICE_NAME } = require('@opentelemetry/semantic-conventions');
 const { NodeSDK } = require('@opentelemetry/sdk-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
 const { ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-node');
-const { ConsoleMetricExporter, PeriodicExportingMetricReader } = require('@opentelemetry/sdk-metrics');
 const { OTLPTraceExporter } = require('@opentelemetry/exporter-otlp-http');
 
 // Instrumentations
@@ -22,13 +21,10 @@ const traceExporter = useJaeger
     : new ConsoleSpanExporter();
 
 const sdk = new NodeSDK({
-    resource: resourceFromAttributes({
+    resource: new Resource({
         [ATTR_SERVICE_NAME]: "todo-service"
     }),
     traceExporter: traceExporter,
-    metricReader: new PeriodicExportingMetricReader({
-        exporter: new ConsoleMetricExporter(),
-    }),
     instrumentations: [
         getNodeAutoInstrumentations(),
         new ExpressInstrumentation(),
