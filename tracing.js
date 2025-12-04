@@ -15,10 +15,11 @@ const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
 // Set USE_JAEGER=true environment variable to use Jaeger
 const useJaeger = process.env.USE_JAEGER === 'true' || process.env.USE_JAEGER === '1';
 
-// Try OTLP HTTP first, fallback to Jaeger exporter
+// Use OTLP exporter as per assignment requirements
 const traceExporter = useJaeger 
     ? new OTLPTraceExporter({
         url: 'http://localhost:4318/v1/traces', // OTLP HTTP endpoint
+        headers: {}
       })
     : new ConsoleSpanExporter();
 
