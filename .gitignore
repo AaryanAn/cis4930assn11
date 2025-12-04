@@ -4,4 +4,10 @@ node_modules/
 *.log
 .vscode/
 .idea/
-
+server.log
+server.pid
+ASSIGNMENT_STATUS.md
+SCREENSHOT_GUIDE.md
+TELEMETRY_SUMMARY.md
+setup-docker.sh
+package-lock.json
