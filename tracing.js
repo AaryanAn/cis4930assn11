@@ -3,22 +3,17 @@ const { ATTR_SERVICE_NAME } = require('@opentelemetry/semantic-conventions');
 const { NodeSDK } = require('@opentelemetry/sdk-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
 const { ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-node');
-const { JaegerExporter } = require('@opentelemetry/exporter-jaeger');
 const { OTLPTraceExporter } = require('@opentelemetry/exporter-otlp-http');
 
-// Instrumentations
 const { ExpressInstrumentation } = require("opentelemetry-instrumentation-express");
 const { MongoDBInstrumentation } = require("@opentelemetry/instrumentation-mongodb");
 const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
 
-// Use OTLP exporter for Jaeger, fallback to console for debugging
-// Set USE_JAEGER=true environment variable to use Jaeger
 const useJaeger = process.env.USE_JAEGER === 'true' || process.env.USE_JAEGER === '1';
 
-// Use OTLP exporter as per assignment requirements
 const traceExporter = useJaeger 
     ? new OTLPTraceExporter({
-        url: 'http://localhost:4318/v1/traces', // OTLP HTTP endpoint
+        url: 'http://localhost:4318/v1/traces',
         headers: {}
       })
     : new ConsoleSpanExporter();
